@@ -1,0 +1,26 @@
+<html>
+<head>
+	<title>Wake</title>
+	<script type='text/javascript' src='//code.jquery.com/jquery-3.2.1.min.js'> </script>
+	<script src="scripts/buttons.js"></script>
+</head>
+<body>
+	<form>
+		Username:<br/>
+		<input type="text" id="username"><br/>
+		First Name:<br/>
+		<input type="text" id="first-name"><br/>
+		Last Name:<br/>
+		<input type="text" id="last-name"><br/>
+		Phone Number:<br/>
+		<input type="text" id="phone-number"><br/>
+	</form>
+	<button type="button" id="get-user">GET user by username*</button><br/>
+	<button type="button" id="put-user">PUT new user into system**</button><br/>
+	<button type="button" id="post-user">POST a modified user**</button><br/>
+	<button type="button" id="delete-user">DELETE a user by username*</button><br/><br/>
+	<span>*Username required.</span><br/>
+	<span>**All fields required.</span><br/><br/>
+	<div id="response"></div>
+</body>
+</html>

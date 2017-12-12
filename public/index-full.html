@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<title>Wake</title>
+ <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Advent+Pro" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="stylesheets/styles.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script type='text/javascript' src='//code.jquery.com/jquery-3.2.1.min.js'> </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script src="scripts/buttons.js"></script>
+	<script src="scripts/initialize.js"></script>
+  <script src="scripts/login-forms.js"></script>
+</head>
+
+<body>
+
+<main>
+  <div class="top container">
+  	<h1 class="title"><a href="/">WAKE</a></h1>
+    <p>Wake is an alarm clock app that allows you to set alarms and ask your friends
+      to make sure you wake up to them.</p>
+  </div>
+  <nav>
+    <div class="nav-wrapper">
+      <ul id="nav-mobile" class="hide-on-med-and-down">
+        <li><a href="alarms.html">alarms</a></li>
+        <li><a href="friends.html">friends</a></li>
+        <li><a href="profile.html">me</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="bottom">
+  <div class="container">
+    <div class="buttons">
+      <a class="btn" class="login-link">Log In</a>
+      <a class="btn" class="register-link">Register</a>
+    </div>
+
+    <form class="login">
+      <div class="input-field col s6">
+        <input id="username" type="text" class="validate" required>
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" required>
+        <label for="password">Password</label>
+      </div>
+      <p>Don't have an account? Register <a class="register-link">here</a>.</p>
+    </form>
+
+    <form class="register">
+      <div class="input-field col s6">
+        <input id="username" type="text" class="validate" required>
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="phone-num" type="text" class="validate" data-length="10" required>
+        <label for="phone-num">Phone Number</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" required>
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password-conf" type="password" class="validate" required>
+        <label for="password-conf">Confirm Password</label>
+      </div>
+      <p>Already have an account? Login <a class="login-link">here</a>.</p>
+    </form>
+
+    <a class="btn" href="/login_test">Send a Song!</a>
+  </div>
+  </div>
+</main>
+
+<footer>
+  <div class="social-media container"> 
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/facebook_logo.svg"></img>
+      </a>
+    </div>
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/email_logo.svg"></img>
+      </a>
+    </div>
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/youtube_logo.svg"></img>
+      </a>
+    </div>
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/linkedin_logo.svg"></img>
+      </a>
+    </div>
+
+  <p>&copy; Stephanie Pang 2017</p>
+  </div>
+</footer>
+
+</body>
+</html>

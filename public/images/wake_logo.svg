@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 20.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 296.2 270.2" style="enable-background:new 0 0 296.2 270.2;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#EBC21F;stroke-width:4;stroke-miterlimit:10;}
+	.st1{fill:#275B86;}
+	.st2{fill:#FDFAE1;}
+	.st3{fill:#EBC21F;}
+</style>
+<g>
+	<g>
+		<circle class="st0" cx="148.1" cy="135.1" r="45.5"/>
+		<g transform="translate(49.000000, 18.000000)">
+			<path class="st0" d="M99.1,52.5V23.1"/>
+			<path class="st0" d="M99.1,211.1v-29.4"/>
+		</g>
+		
+			<g transform="translate(50.000000, 50.000000) rotate(90.000000) translate(-50.000000, -50.000000) translate(49.000000, 18.000000)">
+			<path class="st0" d="M86.1-130.7v-29.4"/>
+			<path class="st0" d="M86.1,27.8V-1.5"/>
+		</g>
+		
+			<g transform="translate(50.000000, 50.000000) rotate(45.000000) translate(-50.000000, -50.000000) translate(18.000000, 18.000000)">
+			<g transform="translate(31.000000, 0.000000)">
+				<path class="st0" d="M130.6-41.8v-29.4"/>
+				<path class="st0" d="M130.6,116.7V87.4"/>
+			</g>
+			
+				<g transform="translate(32.000000, 32.000000) rotate(90.000000) translate(-32.000000, -32.000000) translate(31.000000, 0.000000)">
+				<path class="st0" d="M-8.2-162.2v-29.4"/>
+				<path class="st0" d="M-8.2-3.6V-33"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+<% include partials/head %>
+<body>
+
+<main>
+<% include partials/banner %>
+<% include(partials/navbar, {home: "active", alarms: "", friends: ""})%>
+  <div class="bottom">
+  <div class="container">
+    <div class="buttons">
+      <a class="btn" class="login-link">Log In</a>
+      <a class="btn" class="register-link">Register</a>
+    </div>
+
+    <form class="login">
+      <div class="input-field col s6">
+        <input id="username" type="text" class="validate" required>
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" required>
+        <label for="password">Password</label>
+      </div>
+      <p>Don't have an account? Register <a class="register-link">here</a>.</p>
+    </form>
+
+    <form class="register">
+      <div class="input-field col s6">
+        <input id="username" type="text" class="validate" required>
+        <label for="username">Username</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="phone-num" type="text" class="validate" data-length="10" required>
+        <label for="phone-num">Phone Number</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password" type="password" class="validate" required>
+        <label for="password">Password</label>
+      </div>
+      <div class="input-field col s6">
+        <input id="password-conf" type="password" class="validate" required>
+        <label for="password-conf">Confirm Password</label>
+      </div>
+      <p>Already have an account? Login <a class="login-link">here</a>.</p>
+    </form>
+
+    <a class="btn" href="/login_test">Send a Song!</a>
+  </div>
+  </div>
+</main>
+
+<footer>
+  <div class="social-media container"> 
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/facebook_logo.svg"></img>
+      </a>
+    </div>
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/email_logo.svg"></img>
+      </a>
+    </div>
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/youtube_logo.svg"></img>
+      </a>
+    </div>
+    <div class="small-logo">
+      <a href="#">
+        <img src="images/linkedin_logo.svg"></img>
+      </a>
+    </div>
+
+  <p>&copy; Stephanie Pang 2017</p>
+  </div>
+</footer>
+
+</body>
+</html>

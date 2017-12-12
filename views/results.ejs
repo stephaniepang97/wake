@@ -1,0 +1,8 @@
+<h3><%= title %></h3>
+<% if (obj.length) { %>
+	[</br>
+		<% obj.forEach(function(next) { %>
+		<%= JSON.stringify(next) %></br>
+	<% }); %>
+	]
+<% } %>
