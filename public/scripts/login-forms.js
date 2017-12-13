@@ -40,19 +40,16 @@ $(window).on('load', function(){
 			success: function(result){
 				$("#response").html(result);
 				Materialize.toast(result, 3000);
-			}
-		});
 
-	  // login 
-		$.ajax({
-			url: "login",
-			type: "POST",
-			data: {
-				"username": registerData.username,
-				"password": registerData.password
-			},
-			success: function(result){
-				Materialize.toast('Logged in!', 3000);
+				// login 
+				$.ajax({
+					url: "login",
+					type: "POST",
+					data: {
+						"username": registerData.username,
+						"password": registerData.password
+					}
+				});
 			}
 		});
 

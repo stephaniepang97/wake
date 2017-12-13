@@ -9,15 +9,15 @@ exports.init = function(app) {
   var passport = app.get('passport');
 
   // pages you can only view if you're logged in
-  app.get('/home', checkAuthentication, home);
-  app.get('/alarms', checkAuthentication, alarms);
-  app.get('/friends', checkAuthentication, friends);
+  app.get('/home', home);
+  app.get('/alarms', alarms);
+  app.get('/friends', friends);
 
-  // login route, upon success login to spotify
+  // login route
   app.post('/login',
         passport.authenticate('local', {
-                                failureRedirect: '/',
-                                successRedirect: '/home'}));
+                              failureRedirect: '/home',
+                              successRedirect: '/home'}));
   // The Logout route
   app.get('/logout', doLogout);
 
@@ -30,13 +30,13 @@ exports.init = function(app) {
 
 // pages you can only view if you're logged in
 home = function(req, res) {
-  res.render('home');
+  res.render('home', {home: "active", alarms: "", friends: ""});
 };
 alarms = function(req, res) {
-  res.render('alarms');
+  res.render('alarms', {home: "", alarms: "active", friends: ""});
 };
 friends = function(req, res) {
-  res.render('friends');
+  res.render('friends', {home: "", alarms: "", friends: "active"});
 };
 
 /*
@@ -47,11 +47,10 @@ friends = function(req, res) {
 function checkAuthentication(req, res, next){
     // Passport will set req.isAuthenticated
     if(req.isAuthenticated()){
-        next();
+      next();
     }else{
-        // The user is not logged in. Redirect to the login page.
-        Materialize.toast("Please log in.", 3000);
-        res.redirect("/");
+      // The user is not logged in. Redirect to the login page.
+      res.redirect("/");
     }
 }
 

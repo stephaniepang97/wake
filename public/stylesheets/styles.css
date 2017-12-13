@@ -23,6 +23,20 @@ a{
   background-color: #B79118;
 }
 
+.light{
+	background: #FCF9E0;
+	width: 160px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 1.6em;
+	color: #275B86;
+}
+
+.light:focus,
+.light:hover {
+  background-color: #DBD4AD;
+}
+
 html {
 	min-height: 100%;
 	position: relative;
@@ -30,15 +44,14 @@ html {
 }
 
 main{
-	background-color: #275B86;
 	top: 0; left: 0; bottom: 0;
-	position: absolute;
+	position: relative;
 }
 
 body{
 	min-height: 100%;
 }
-/*
+
 .title{
 	font-family: 'Advent Pro', sans-serif;
 	color: #FDFAE1;
@@ -46,7 +59,7 @@ body{
 
 nav{
 	height: 50px;
-	background-color: #FDFAE1;
+	background: #FDFAE1;
 }
 
 nav .nav-wrapper{
@@ -56,7 +69,7 @@ nav .nav-wrapper{
 }
 
 nav li{
-	margin: 0 50px 0 50px;
+	margin: 0 40px 0 40px;
 	height: 50px;
 }
 
@@ -64,19 +77,19 @@ nav li>a{
 	color: #BD812B;
 	font-family: 'Advent Pro', sans-serif;
 	font-size: 1.5em;
-	display: block;
-	height: 100%;
+  height: 50px;
+  line-height: 50px;
 }
 
-main .title{
+.title{
 	font-weight: bolder;
 }
 
-main .title a{
+.title a{
 	color: inherit;
 }
 
-main .title a:hover{
+.title a:hover{
 	color: #E9F9FF;
 }
 
@@ -85,18 +98,33 @@ main .top {
 	text-align: center;
 	font-size: 1.8em;
 	padding: 30px 100px 0 100px;
-	height: 40%;
+	width: 100%; height: 40%;
 	border-radius: 3px;
 	position: relative;
+	background: #275B86;
+	border: 1px solid #979797;
 }
 
-main .bottom{
-	background-color: #E9F9FF;
-	padding: 50px 100px 0 100px;
-	bottom: 0; left: 0; right: 0;
-	height: 60%;
+.bottom{
+	margin-top: 70px;
+	padding-bottom: 50px;
+	margin-left: 20%;
+	margin-right: 20%;
 }
 
+.bottom p{
+	font-size: 22px;
+	text-align: center;
+}
+
+.bottom h2{
+	font-family: 'Advent Pro', sans-serif;
+	font-weight: 700;
+	font-size: 32px;
+	color: #000000;
+}
+
+/*
 footer{
 	position: absolute;
   right: 0;
@@ -122,3 +150,5 @@ footer p{
 	font-size: small;
 }
 */
+
+/**{border: 2px solid red;}*/

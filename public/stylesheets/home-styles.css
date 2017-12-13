@@ -1,0 +1,111 @@
+
+#countdown{
+	font-size: 36px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.bottom .statement{
+	line-height: 50px;
+}
+
+.friend-alarms-wrapper{
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+.friend-alarm{
+	background: #EAC11E;
+	box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.50);
+	border-radius: 8px;
+	width: 100%; height: 20%;
+	padding: 3% 10% 4% 10%;
+	display: inline-block;
+}
+
+.friend-alarm h3{
+	font-family: 'Advent Pro', sans-serif;
+	font-size: 64px;
+	font-weight: 700;
+	color: #FFFFFF;
+	text-align: center;
+}
+
+.friend-alarm p{
+	font-size: 22px;
+	color: #FFFFFF;
+	text-align: left;
+}
+
+.friend-alarm .alarm-time{
+	text-align: center;
+	font-size: 18px;
+}
+
+.friend-alarm .button{
+	float: right;
+}
+
+.friend-alarm .send-song{
+  margin-top: 15px;
+}
+
+.friend-alarm .search{
+	font-size: 22px !important;
+}
+
+.friend-alarm .number{
+	margin: 5px;
+	margin-bottom: 6%;
+}
+
+.friend-alarm .row{
+	margin: 0;
+	height: 80%;
+}
+
+.friend-alarm .dismiss{
+	font-size: 12px;
+	text-align: center;
+	text-decoration: underline;
+}
+
+.friend-alarm .dismiss:hover{
+	color: #E9F9FF;
+}
+
+/* label focus color */
+ .input-field input:focus{
+   color: white !important;
+ }
+ /* label underline focus color */
+.input-field input:focus {
+   border-bottom: 1px solid white !important;
+   box-shadow: 0 1px 0 0 white !important
+ }
+  /* label underline focus color */
+.input-field input {
+   border-color: white !important;
+ }
+
+ ::placeholder { /* Most modern browsers support this now. */
+   color:    #F2E6C2;
+}
+
+.profile{
+	width: 60%;
+	table-layout: fixed;
+	margin: auto;
+	font-size: 22px;
+}
+
+.profile td{
+	width: 50%;
+	padding: 0;
+}
+
+.profile .col1{
+	font-family: 'Advent Pro', sans-serif;
+	font-weight: 600;
+	font-size: 26px;
+}
