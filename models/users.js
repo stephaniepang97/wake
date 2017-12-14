@@ -1,4 +1,5 @@
 var mongoModel = require("../models/mongoModel.js")
+var mongo = require("mongodb");
 
 exports.create = function(data, callback){
 	mongoModel.create('user', data, callback);
@@ -36,9 +37,17 @@ exports.findByUsername = function(username, callback) {
 exports.findById = function(id, callback) {
   var foundUser = null;
   var err = null;
+  var user_id = new mongo.ObjectId(id);
 
   // get user from database
   mongoModel.mongoDB 
   	.collection('user')
-		.findOne({"_id":id}, callback);
+		.findOne({"_id":user_id}, callback);
+}
+
+// get all usernames 
+exports.usernames = function(callback){
+  mongoModel.mongoDB
+    .collection('user')
+    .distinct('username', callback);
 }

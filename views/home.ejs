@@ -3,6 +3,7 @@
 <head>
 <% include partials/head %>
 <link rel="stylesheet" href="stylesheets/home-styles.css">
+<script src="scripts/home-scripts.js"></script>
 </head>
 <body>
 
@@ -34,16 +35,38 @@
   </div>
 
   <h2>My Profile</h2>
+    <a href="<%=user.external_urls.spotify%>" target="_blank"><img src="<%=user.images[0].url%>"></a>
     <table class="profile">
       <tr>
-        <td class="col1">First Name</td>
-        <td>Stephanie</td>
+        <td class="col1">Username</td>
+        <td class="username"><%=user.username%></td>
       </tr>
       <tr>
-        <td class="col1">Last Name</td>
-        <td>Pang</td>
+        <td class="col1">First Name</td>
+        <td><%=user.firstname%></td>
+      </tr>      
+      <tr>
+        <td class="col1">First Name</td>
+        <td><%=user.lastname%></td>
+      </tr>
+      <tr>
+        <td class="col1">Phone Number</td>
+        <td><%=user.phonenum%></td>
+      </tr>
+      <tr>
+        <td class="col1">Email</td>
+        <td><%=user.email%></td>
       </tr>
     </table>
+
+  <h2>Spotify Tokens</h2>
+  <div class="tokens">
+    <p class="col1">Access Token</p>
+    <p class="access token"><%=user.access_token%></p>
+    <p class="col1">Refresh Token</p>
+    <p class="refresh token"><%=user.refresh_token%></p>
+    <a class="medium button">refresh token</a>
+  </div>
 </div>
 </main>
 

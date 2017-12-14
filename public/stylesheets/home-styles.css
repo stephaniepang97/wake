@@ -91,12 +91,22 @@
  ::placeholder { /* Most modern browsers support this now. */
    color:    #F2E6C2;
 }
-
+ 
 .profile{
 	width: 60%;
 	table-layout: fixed;
-	margin: auto;
 	font-size: 22px;
+  display: inline-block;
+  margin-left: 8%;
+}
+
+img{
+	box-shadow: 2px 2px 4px 0 rgba(0,0,0,0.50);
+	border-radius: 8px;
+}
+
+img:hover{
+	opacity: 0.8;
 }
 
 .profile td{
@@ -104,8 +114,25 @@
 	padding: 0;
 }
 
-.profile .col1{
+.col1{
 	font-family: 'Advent Pro', sans-serif;
 	font-weight: 600;
 	font-size: 26px;
+}
+
+.tokens{
+	text-align: center;
+}
+
+.tokens p{
+	text-align: left;
+	margin:0;
+	word-wrap:break-word
+}
+
+.tokens .token{
+	font-size: 12px;
+	padding: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
 }

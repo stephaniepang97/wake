@@ -1,9 +1,27 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-  <head>
-    <title>Error</title>
-  </head>
-  <body>
-    <p><%= message %></p>
-  </body>
+<head>
+<% include partials/head %>
+</head>
+<body>
+
+<main>
+<% include partials/banner %>
+<% include partials/navbar %>
+<div class="bottom">
+  <h2>Error</h2>
+
+  <p>Sorry! There was an error. Click <a href="/home">here</a> to go home.</p>
+
+  <ul class="collapsible error" data-collapsible="accordion">
+  	<li>
+	    <div class="collapsible-header"><i class="material-icons">info_outline</i>See error message</div>
+	    <div class="collapsible-body"><span><%= message %></span></div>
+  	</li>
+  </ul>
+
+</div>
+</main>
+
+</body>
 </html>

@@ -9,15 +9,20 @@ exports.init = function(app) {
   var passport = app.get('passport');
 
   // pages you can only view if you're logged in
-  app.get('/home', home);
-  app.get('/alarms', alarms);
-  app.get('/friends', friends);
+  app.get('/home', checkAuthentication, home);
+  app.get('/alarms', checkAuthentication, alarms);
+  app.get('/friends', checkAuthentication, friends);
+  app.get("/new-alarm", checkAuthentication,
+    function(req, res){ res.render('new-alarm', {user: req.user}); } );
+
+  // get all the usernames
+  app.get('/usernames', usernames);
 
   // login route
   app.post('/login',
         passport.authenticate('local', {
-                              failureRedirect: '/home',
-                              successRedirect: '/home'}));
+                              failureRedirect: '/',
+                              successRedirect: '/login-spotify'}));
   // The Logout route
   app.get('/logout', doLogout);
 
@@ -30,14 +35,23 @@ exports.init = function(app) {
 
 // pages you can only view if you're logged in
 home = function(req, res) {
-  res.render('home', {home: "active", alarms: "", friends: ""});
+  res.render('home', {home: "active", alarms: "", friends: "", user: req.user});
 };
-alarms = function(req, res) {
-  res.render('alarms', {home: "", alarms: "active", friends: ""});
+alarms = function(req, res) { 
+  res.render('alarms', {home: "", alarms: "active", friends: "", user: req.user});
 };
 friends = function(req, res) {
-  res.render('friends', {home: "", alarms: "", friends: "active"});
+  res.render('friends', {home: "", alarms: "", friends: "active", user: req.user});
 };
+usernames = function(req, res){
+  users.usernames(function(err, result){
+    if (err){
+      res.render("error", {message: err});
+    } else{
+      res.send(result);
+    }
+  });
+}
 
 /*
  * Check if the user has authenticated
@@ -76,16 +90,15 @@ createUser = function(req, res){
    * Object.keys(req.body).length is a quick way to count the number of
    * properties in the req.body object.
    */
-   console.log(req.body);
   if (Object.keys(req.body).length == 0) {
-    res.render('message', {title: 'Users', obj: "No create message body found"});
+    res.render('error', {message: "No create message body found"});
     return;
   }
 
   users.create( req.body,
                 function(result) {
                   // result equal to true means create was successful
-                  var success = (result ? "Successfully created user" : "Error in creating user");
+                  var success = (result ? "Welcome!" : "Error in creating user");
                   res.send(success);
                 });
 }
@@ -100,11 +113,11 @@ retrieveUser = function(req, res){
     req.query,
 		function(modelData) {
 		  if (modelData.length) {
-        res.render('results',{title: 'Users', obj: modelData});
+        res.status(200).send(modelData);
       } else {
         var message = "No documents with "+JSON.stringify(req.query)+ 
                       " in collection "+"user"+" found.";
-        res.render('message', {title: 'User', obj: message});
+        res.status(500).render('error', {message: message});
       }
 		});
 }
@@ -118,15 +131,13 @@ retrieveUser = function(req, res){
  * you are using and the content of the documents you are storing to them.)
  */ 
 updateUser = function(req, res){
-	console.log(req.body.find);
   // if there is no filter to select documents to update, select all documents
   var filter = req.body.find ? JSON.parse(req.body.find) : {};
   // if there no update operation defined, render an error page.
   if (!req.body.update) {
-    res.render('message', {title: 'User', obj: "No update operation defined"});
+    res.render('/error', {message: "No update operation defined"});
     return;
   }
-  console.log(req.body.update);
   var update = JSON.parse(req.body.update);
   /*
    * Call the model Update with:
@@ -142,7 +153,8 @@ updateUser = function(req, res){
    */
   users.update(filter, update,
 	  function(status) {
-		  res.render('message',{title: 'User', obj: status});
+      console.log("User update status: " + status);
+      res.status(200).end();
 	  });
 }
 
@@ -154,7 +166,7 @@ updateUser = function(req, res){
 deleteUser = function(req, res){
   users.delete(
     req.query,
-		function(status) {
-      res.render('message', {title: 'User', obj: status});
+		function(result) {
+      res.send(result);
     });
 }

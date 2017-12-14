@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<title>Wake</title>
  <!-- Compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
@@ -12,7 +14,6 @@
   <!-- Compiled and minified JavaScript -->
   <script type='text/javascript' src='//code.jquery.com/jquery-3.2.1.min.js'> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-	<script src="scripts/buttons.js"></script>
   <script src="scripts/login-forms.js"></script>
 </head>
 
@@ -25,23 +26,23 @@
 
   <p class="desc">Wake is a social alarm clock that allows you to set alarms and ask your friends to make sure you wake up to them.</p>
 
-  <div class="button-wrapper">
-    <a class="button login-link">log in</a>
-    <a class="button register-link">register</a>
+  <div class="button-wrapper row">
+    <div class="col m4 offset-m2 s12"><a class="button login-link">log in</a></div>
+    <div class="col m4 s12"><a class="button register-link">register</a></div>
   </div>
 
 
   <form class="login" action="/login" method="post">
-    <div class="input-field col s6">
+    <div class="input-field">
       <input name="username" value="" type="text" class="validate center" required>
       <label for="username">Username</label>
     </div>
-    <div class="input-field col s6">
+    <div class="input-field">
       <input name="password" value="" type="password" class="validate center" required>
       <label for="password">Password</label>
     </div>
     <p>Don't have an account? Register <a class="register-link">here</a>.</p>
-    <input type="submit" class="button" value="log in"/>
+    <input type="submit" class="medium button" value="log in"/>
   </form>
 
   <form class="register">
@@ -70,7 +71,7 @@
       <label for="password-conf">Confirm Password</label>
     </div>
     <p>Already have an account? Login <a class="login-link">here</a>.</p>
-    <input type="submit" class="button" value="register"/>
+    <input type="submit" class="medium button" value="register"/>
   </form>
 
 

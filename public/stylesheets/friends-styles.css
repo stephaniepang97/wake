@@ -1,13 +1,14 @@
 
 table{
-	width: 60%;
+	width: 100%;
 	table-layout: fixed;
 	margin: auto;
+	margin-bottom: 5%;
 	font-size: 22px;
 }
 
 table td{
-	width: 50%;
+	width: 25%;
 	padding: 0;
 	padding-bottom: 10px;
 	text-align: center;
@@ -20,23 +21,13 @@ table th{
 	text-align: center;
 }
 
-.button-wrapper{
-	text-align: center;
-	margin: 5%;
-}
-
-.new-alarm #friend, #time{
-	width: 80%;
-	font-size: larger;
+.add-friend{
 	text-align: center;
 }
 
-.new-alarm #time{
+#new-friend-username{
 	text-align: center;
-	border: none !important;
-}
-
-.new-alarm #time:focus{
-   border-bottom: none !important;
-   box-shadow: none !important
+	font-size: 1.5em;
+	margin-bottom: 30px;
+	margin-right: 30px;
 }

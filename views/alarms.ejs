@@ -11,37 +11,38 @@
 <% include partials/navbar %>
 <div class="bottom">
   <h2>My Alarms</h2>
-    <p class="statement">Your next alarm is in <span id="countdown">00:12</span> at <span id="next-alarm">8:15 AM</span>.
-  <h2>Friends' Alarms</h2>
-    <p class="statement">No one to wake up at this time! See all alarms <a>here</a>.</p>
-
-  <div class="friend-alarms-wrapper">
-  <div class="friend-alarm">
-    <h3>WAKE UP MISHA Y!</h3>
-    <p class="alarm-time">Alarm: 8:00 AM</p>
-    <div class="row">
-      <div class="input-field col s8">
-        <input placeholder="search for song or artist..." class="search" type="text">
-      </div>
-      <a class="light button col" class="send-song">send song</a>
-    </div>
-    <div class="row">
-      <p class="col s8 number">(917) 460–6499</p>
-      <a class="light button col" href="tel:9174606499">call</a>
-    </div>
-    <a class="dismiss">My friend is awake! Dismiss this box.</a>
-  </div>
-  </div>
-
-  <h2>My Profile</h2>
-    <table class="profile">
+    <% if (user.alarms && user.alarms.length > 0) { %>
+    <table class="my-alarms">
       <tr>
-        <td class="col1">First Name</td>
-        <td>Stephanie</td>
+        <th>Time</th>
+        <th>Friend</th>
+      </tr>
+
+    <% user.alarms.forEach(function(a){ %>
+      <tr>
+        <td><%= a.time %></td>
+        <td><%= a.friend %></td>
+      </tr> 
+    <% }); %>
+    </table>
+    <%}%>
+    <div class="button-wrapper">
+      <a href="/new-alarm" class="medium button">new alarm</a>  
+    </div>
+
+  <h2>Friends' Alarms</h2>
+    <table class="friends-alarms">
+      <tr>
+        <th>Friend</th>
+        <th>Time</th>
       </tr>
       <tr>
-        <td class="col1">Last Name</td>
-        <td>Pang</td>
+        <td>Misha Y</td>
+        <td>8:00 AM</td>
+      </tr>
+      <tr>
+        <td>Mimi N</td>
+        <td>8:15 AM</td>
       </tr>
     </table>
 </div>

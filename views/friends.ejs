@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+<% include partials/head %>
+<link rel="stylesheet" href="stylesheets/friends-styles.css">
+<script src="scripts/friends-scripts.js"></script>
+</head>
+<body>
+
+<main>
+<% include partials/banner %>
+<% include partials/navbar %>
+<div class="bottom">
+  <h2>My Friends</h2>
+  <% if (user.friends && user.friends.length > 0){ %>
+    <table class="friends">
+      <tr>
+        <th>Username</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+      </tr>
+    <% user.friends.forEach(function(f){ %>
+      <tr>
+        <td><%= f.username %></td>
+        <td><%= f.firstname %></td>
+        <td><%= f.lastname %></td>
+        <td><%= f.phonenum %></td>
+      </tr>
+    <% }); %>
+    </table>
+  <% } %>
+  <div class="add-friend row">
+    <input type="text" id="new-friend-username" placeholder="search by username..." class="col m9">
+    <a class="medium button col" id="new-friend">add friend</a> 
+  </div> 
+</div>
+</main>
+
+</body>
+</html>

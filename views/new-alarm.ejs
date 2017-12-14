@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<% include partials/head %>
+<link rel="stylesheet" href="stylesheets/alarms-styles.css">
+<script src="scripts/alarms-scripts.js"></script>
+</head>
+<body>
+
+<main>
+<% include partials/banner %>
+<% include partials/navbar %>
+<div class="bottom">
+  <h2>New Alarm</h2>
+  <table class="new-alarm">
+    <tr>
+      <th>Time</th>
+      <th>Friend</th>
+    </tr>
+    <tr>
+      <td>
+        <input id="time" type="time" class="center">
+      </td>
+      <td>
+      <select id="friend">
+        <option value="--" selected>--</option>
+        <% if (user.friends && user.friends.length) { %>
+        <% user.friends.forEach(function(f){ %>
+          <% if (f.username) { %>
+          <option value="<%=f.username%>"><%=f.firstname+" "+f.lastname[0]%></option>
+          <% } %>
+        <% }); %>
+        <% } %>
+      </select>
+      </td>
+    </tr>
+  </table>
+  <div class="button-wrapper">
+    <a class="medium button">add</a> 
+  </div>
+
+
+</div>
+</main>
+
+</body>
+</html>

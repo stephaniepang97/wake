@@ -17,7 +17,7 @@ exports.init = function(app) {
 // adapted from Spotify API tutorial at:
 // https://github.com/spotify/web-api-auth-examples/blob/master/authorization_code/app.js
 
-
+// authorize app with Spotify API
 loginSpotify = function(req, res) {
   var scope = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
@@ -31,9 +31,11 @@ loginSpotify = function(req, res) {
 }
 
 
+// gets access and refresh tokens 
 requestTokens = function(req, res){
   var code = req.query.code || null;
 
+  // get access and refresh token using client id and secret 
   var authOptions = {
     url: 'https://accounts.spotify.com/api/token',
     form: {
@@ -53,52 +55,48 @@ requestTokens = function(req, res){
       var access_token = body.access_token,
           refresh_token = body.refresh_token;
 
+      // use access token to get user data from Spotify
       var options = {
         url: 'https://api.spotify.com/v1/me',
         headers: { 'Authorization': 'Bearer ' + access_token },
         json: true
       };
-      // use the access token to access the Spotify Web API
+
+      // use the access token to access the Spotify Web API and update profile
       request.get(options, function(error, response, body) {
-        console.log(body);
-      });
+        var user_data = Object.assign({"access_token":access_token, "refresh_token":refresh_token}, body);
 
-      // add access and refresh tokens to mongo db
-      var updateUserOptions = {
-        url: '/user',
-        form: {
-          find: {"username": "spang"},
-          update: {
-            "$set": {
-              "access_token": access_token,
-              "refresh_token": refresh_token
-            }
-          }
+        // add access and refresh tokens and spotify user data to mongo db
+        var updateUserOptions = {
+          url: 'http://localhost:50000/user',
+          form: {
+            find: `{"username": "${req.user.username}"}`,
+            update: `{ "$set": ${JSON.stringify(user_data)} }`
+          }                 
         }
-      }
-      request.post(updateUserOptions, function(error, response, body){
-        console.log(body);
-        console.log("UPDATE USER");
+        request.post(updateUserOptions, function(postError, postResponse, postBody){
+          if (postError){
+            console.log("ERROR: "+postError);
+            res.render("error", {"message": postError});
+            return;
+          } else {
+            // redirect to home after completing log in
+            res.redirect('/home');
+          }
+        });
+
+        
+
       });
 
-      // we can also pass the token to the browser to make requests from there
-      res.redirect('/#' +
-        querystring.stringify({
-          access_token: access_token,
-          refresh_token: refresh_token
-        }));
-      } else {
-        res.redirect('/#' +
-          querystring.stringify({
-            error: 'invalid_token'
-          }));
-      }
-    });
-
+    } else {
+      res.render('/error', { "message": 'invalid_token'});
+    }
+  });
 
 }
 
-
+// use refresh token to generate new access_token
 refreshToken = function(req, res) {
 
   // requesting access token from refresh token
@@ -113,6 +111,7 @@ refreshToken = function(req, res) {
     json: true
   };
 
+  // makes the request 
   request.post(authOptions, function(error, response, body) {
     if (!error && response.statusCode === 200) {
       var access_token = body.access_token;

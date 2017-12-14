@@ -39,8 +39,6 @@ exports.init = function (app) {
 passport.use(new Strategy(
   function(username, password, done) {
     users.findByUsername(username, function(err, foundUser) {
-      console.log(err);
-      console.log(foundUser);
       if (err) { return done(err); }
       if (!foundUser) { return done(null, false); }
       if (foundUser.password != password) { return done(null, false); }

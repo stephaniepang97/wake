@@ -6,11 +6,32 @@ var alarms = require("../models/alarms.js")
  * @param app - The Express app
  */
 exports.init = function(app) {
+  //CRUD operations
   app.get("/alarm", retrieveAlarm);
   app.post("/alarm", createAlarm);
   app.put("/alarm", updateAlarm);
   app.delete("/alarm", deleteAlarm);
+
+  //new alarm page
+  app.get("/new-alarm", checkAuthentication,
+    function(req, res){ res.render('new-alarm', {user: req.user}); } );
 }
+
+/*
+ * Check if the user has authenticated
+ * @param req, res - as always...
+ * @param {function} next - The next middleware to call.
+ */
+function checkAuthentication(req, res, next){
+    // Passport will set req.isAuthenticated
+    if(req.isAuthenticated()){
+      next();
+    }else{
+      // The user is not logged in. Redirect to the login page.
+      res.redirect("/");
+    }
+}
+
 
 /********** CRUD Create *******************************************************
  * Take the object defined in the request body and do the Create
@@ -23,15 +44,15 @@ createAlarm = function(req, res){
    * properties in the req.body object.
    */
   if (Object.keys(req.body).length == 0) {
-    res.render('message', {title: 'Mongo Demo', obj: "No create message body found"});
+    res.render('error', {message: "No create message body found"});
     return;
   }
 
   alarms.create ( req.body,
                   function(result) {
                     // result equal to true means create was successful
-	                  var success = (result ? "Create successful" : "Create unsuccessful");
-	                  res.render('message', {title: 'Alarm', obj: success});
+	                  var success = (result ? "Alarm added" : "Error in adding alarm");
+	                  res.send(success);
                   });
 }
 
@@ -49,7 +70,7 @@ retrieveAlarm = function(req, res){
       } else {
         var message = "No documents with "+JSON.stringify(req.query)+ 
                       " in collection "+"alarm"+" found.";
-        res.render('message', {title: 'Alarm', obj: message});
+        res.render('error', {message: message});
       }
 		});
 }
@@ -67,7 +88,7 @@ updateAlarm = function(req, res){
   var filter = req.body.find ? JSON.parse(req.body.find) : {};
   // if there no update operation defined, render an error page.
   if (!req.body.update) {
-    res.render('message', {title: 'Alarm', obj: "No update operation defined"});
+    res.render('error', {message: "No update operation defined"});
     return;
   }
   var update = JSON.parse(req.body.update);
@@ -85,7 +106,8 @@ updateAlarm = function(req, res){
    */
   alarms.update(  filter, update,
 	                  function(status) {
-            				  res.render('message',{title: 'Alarm', obj: status});
+                      console.log("Alarm update status: " + status);
+                      res.status(200).end();
 	                  });
 }
 
@@ -98,8 +120,6 @@ deleteAlarm = function(req, res){
   alarms.retrieve(
     req.query,
 		function(result) {
-      // result equal to true means create was successful
-      var success = (result ? "Delete successful" : "Delete unsuccessful");
-      res.render('message', {title: 'Alarm', obj: success});
+      res.send(result);
     });
 }
