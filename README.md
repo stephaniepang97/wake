@@ -1,4 +1,4 @@
-# WAKE 
+# Wake
 Wake is a social alarm clock that allows you to set alarms and ask your friends to make sure you wake up to them. Wake is built on Node.js and Express. 
 
 ## Authentication and Authorization
