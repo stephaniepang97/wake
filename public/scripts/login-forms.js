@@ -41,6 +41,9 @@ $(window).on('load', function(){
 				$("#response").html(result);
 				Materialize.toast(result, 3000);
 				$(".login-link").click();
+			},
+			error: function(){
+				Materialize.toast("Error in registering user", 3000);
 			}
 		});
 

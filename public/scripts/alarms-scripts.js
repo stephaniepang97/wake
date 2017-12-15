@@ -7,7 +7,8 @@ $(window).on('load', function(){
 	$(".button").click(function(){
 
 		var time = $("#time").val();
-		var friend = $("#friend").find(":selected").val();
+		var f_name = $("#friend").find(":selected").text();
+		var f_username = $("#friend").find(":selected").val();
 
 		// update db with new alarm
 		$.ajax({
@@ -15,7 +16,7 @@ $(window).on('load', function(){
 			type: "POST",
 			data: {
 				find: `{"username": "${username}"}`,
-				update: `{"$push":{"alarms": {"time": "${time}", "friend": "${friend}"}}}`
+				update: `{"$push":{"alarms": {"time": "${time}", "friend": {"name":"${f_name}", "username":"${f_username}"}}}}`
 			}, 
 			success:function(){
 				window.location.href = "/alarms";

@@ -5,7 +5,7 @@ var querystring = require('querystring');
 // required for authorization for Spotify API 
 var client_id = "1e379aa39d2d431f8faceb7ecc5bcdbf";
 var client_secret = "f7fb3e20dab84fe4bd1b2845a4869e4d";
-var redirect_uri = 'http://localhost:50000/tokens';
+// var redirect_uri = 'https://wake-klbqjyzvfv.now.sh/tokens';
 
 exports.init = function(app) {
   app.get("/login-spotify", loginSpotify);
@@ -19,6 +19,7 @@ exports.init = function(app) {
 
 // authorize app with Spotify API
 loginSpotify = function(req, res) {
+  var redirect_uri = req.protocol + '://' + req.get('host') + "/tokens";
   var scope = 'user-read-private user-read-email';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
@@ -34,6 +35,7 @@ loginSpotify = function(req, res) {
 // gets access and refresh tokens 
 requestTokens = function(req, res){
   var code = req.query.code || null;
+  var redirect_uri = req.protocol + '://' + req.get('host') + "/tokens";
 
   // get access and refresh token using client id and secret 
   var authOptions = {
@@ -68,7 +70,7 @@ requestTokens = function(req, res){
 
         // add access and refresh tokens and spotify user data to mongo db
         var updateUserOptions = {
-          url: 'http://localhost:50000/user',
+          url: req.protocol + '://' + req.get('host') + "/user",
           form: {
             find: `{"username": "${req.user.username}"}`,
             update: `{ "$set": ${JSON.stringify(user_data)} }`

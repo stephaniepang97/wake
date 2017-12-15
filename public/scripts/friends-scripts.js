@@ -15,6 +15,12 @@
 				"username": f_username
 			}, 
 			success:function(friendData){
+				var friend = friendData[0];
+				var fields = ["username", "firstname", "lastname", "phonenum"];
+				friendData = {};
+				fields.forEach(function(field){
+					friendData[field] = friend[field];
+				});
 				
 				// if username found, then add user to friends array of current user
 				$.ajax({
@@ -22,7 +28,7 @@
 					type: "POST",
 					data: {
 						find: `{"username": "${username}"}`,
-						update: `{"$push":{"friends": ${JSON.stringify(friendData[0])}}}`
+						update: `{"$push":{"friends": ${JSON.stringify(friendData)}}}`
 					}, 
 					success:function(){
 						location.reload();

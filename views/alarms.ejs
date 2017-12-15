@@ -20,8 +20,11 @@
 
     <% user.alarms.forEach(function(a){ %>
       <tr>
-        <td><%= a.time %></td>
-        <td><%= a.friend %></td>
+        <% var hours   = a.time.split(":")[0]; %>
+        <% var time = ((+hours + 11) % 12 + 1)+a.time.substring(2,); %>
+        <% var suffix = (hours >= 12)? 'PM' : 'AM'; %>
+        <td><%= time+" "+suffix %></td>
+        <td><%= a.friend.name %></td>
       </tr> 
     <% }); %>
     </table>
