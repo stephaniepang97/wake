@@ -20,7 +20,7 @@ exports.init = function(app) {
 // authorize app with Spotify API
 loginSpotify = function(req, res) {
   var redirect_uri = req.protocol + '://' + req.get('host') + "/tokens";
-  var scope = 'user-read-private user-read-email';
+  var scope = 'user-read-private user-read-email streaming user-modify-playback-state';
   res.redirect('https://accounts.spotify.com/authorize?' +
     querystring.stringify({
       response_type: 'code',

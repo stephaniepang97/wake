@@ -12,29 +12,35 @@
 <% include partials/navbar %>
 <div class="bottom">
   <h2>My Alarms</h2>
-    <p class="statement ring">Wake up!! Your alarm is at <span id="to-ring"></span></p>
+  <% if (user.alarms && user.alarms.length) {%>
+    <p class="statement ring">Wake up!! Your alarm is at <span id="to-ring"></span>.</p>
     <p class="statement countdown">Your next alarm is in <span id="countdown"></span> at 
       <span id="next-alarm"></span>.</p>
+  <% } else { %>
+    <p>You have no alarms at this time.</p>
+  <% } %>
   <h2>Friends' Alarms</h2>
-    <p class="statement">No one to wake up at this time! See all alarms <a>here</a>.</p>
-
-  <div class="friend-alarms-wrapper">
-  <div class="friend-alarm">
-    <h3>WAKE UP MISHA Y!</h3>
-    <p class="alarm-time">Alarm: 8:00 AM</p>
-    <div class="row">
-      <div class="input-field col s8">
-        <input placeholder="search for song or artist..." class="search" type="text">
+  <% if (user.friends && user.friends.length) { %>
+    <div class="friend-alarms-wrapper">
+    <div class="friend-alarm">
+      <h3>WAKE UP Frank L!</h3>
+      <p class="alarm-time">Alarm: 8:00 AM</p>
+      <div class="row">
+        <div class="input-field col s8">
+          <input placeholder="search for song or artist..." class="search" type="text">
+        </div>
+        <a class="light button col send-song">send song</a>
       </div>
-      <a class="light button col" class="send-song">send song</a>
+      <div class="row">
+        <p class="col s8 number">(917) 460–6499</p>
+        <a class="light button col" href="tel:9174606499">call</a>
+      </div>
+      <a class="dismiss">My friend is awake! Dismiss this box.</a>
+    </div> 
     </div>
-    <div class="row">
-      <p class="col s8 number">(917) 460–6499</p>
-      <a class="light button col" href="tel:9174606499">call</a>
-    </div>
-    <a class="dismiss">My friend is awake! Dismiss this box.</a>
-  </div>
-  </div>
+  <% } else {%>
+    <p class="statement">No one to wake up at this time! See all alarms <a href="/alarms">here</a>.</p>
+  <% } %>
 
   <h2>My Profile</h2>
     <a href="<%=user.external_urls.spotify%>" target="_blank"><img src="<%=user.images[0].url%>"></a>

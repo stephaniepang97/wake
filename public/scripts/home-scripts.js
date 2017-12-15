@@ -103,7 +103,46 @@ $(window).on('load', function(){
 			}, nextTime.getTime() - now.getTime());
 
 		}
-	})
+	});
+
+
+	// search for song and play it on Spotify
+	$(".send-song").click(function(){
+		var toSearch = $(".search").val();
+		var access_token = $(".access").text();
+		console.log(toSearch);
+
+		$.ajax({
+			url: "https://api.spotify.com/v1/search",
+			type: "GET",
+			data: {
+				q: toSearch,
+				type: "track",
+				limit: 1
+			},
+			headers: { 'Authorization': 'Bearer ' + access_token },
+			success: function(data, status){
+				console.log(data);
+				console.log([data.tracks.items[0].uri]);
+
+				// play the song found on spotify
+				$.ajax({
+					url: "https://api.spotify.com/v1/me/player/play",
+					type: "PUT",
+					data: `{"uris": ["${data.tracks.items[0].uri}"]}`,
+					headers: { 'Authorization': 'Bearer ' + access_token },
+					success: function(result, status){
+						console.log(result);
+						console.log(status);
+						Materialize.toast("Playing on Spotify!", 3000);
+					}
+				});
+			}, 
+			error: function(){
+				Materialize.toast("No song found", 3000);
+			}
+		});
+	});
 
 
 });
